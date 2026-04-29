@@ -1,0 +1,23 @@
+{
+  "output_dir": "results/glove_hybrid_run",
+  "max_rows": 5000,
+  "embedding": {
+    "strategy": "hybrid",
+    "embedding_path": "data/embeddings/glove.6B.300d.txt",
+    "embedding_dim": 300,
+    "hybrid_weight": 0.4,
+    "min_df": 2,
+    "use_bigrams": true,
+    "max_features": 8000
+  },
+  "comparison_runs": [
+    {
+      "name": "hybrid_svm",
+      "hierarchy": {
+        "stage1_model": "svm",
+        "stage2_model": "svm",
+        "fallback_model": "svm"
+      }
+    }
+  ]
+}
