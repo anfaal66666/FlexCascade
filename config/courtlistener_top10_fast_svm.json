@@ -1,0 +1,29 @@
+{
+  "output_dir": "results/courtlistener_top10_fast_svm",
+  "max_rows": 20000,
+  "top_n_states": 10,
+  "min_issuer_count": 5,
+  "dataset": {
+    "source": "courtlistener",
+    "courtlistener_dir": "data/courtlistener",
+    "courtlistener_aggregate_level": "cluster",
+    "courtlistener_require_state": true
+  },
+  "embedding": {
+    "strategy": "tfidf",
+    "max_features": 2500,
+    "min_df": 3,
+    "max_doc_tokens": 500,
+    "use_bigrams": false
+  },
+  "comparison_runs": [
+    {
+      "name": "svm_courtlistener_top10_fast",
+      "hierarchy": {
+        "stage1_model": "svm",
+        "stage2_model": "svm",
+        "fallback_model": "svm"
+      }
+    }
+  ]
+}

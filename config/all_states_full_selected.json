@@ -1,0 +1,66 @@
+{
+  "output_dir": "results/all_states_full_best",
+  "python_cmd": "/opt/anaconda3/bin/python",
+  "max_rows": null,
+  "min_issuer_count": 1,
+  "embedding": {
+    "strategy": "tfidf",
+    "min_df": 2,
+    "use_bigrams": true,
+    "max_features": 6000,
+    "max_doc_tokens": 1200
+  },
+  "models": {
+    "svm": {
+      "type": 0,
+      "cost": 2,
+      "bias": true,
+      "epsilon": 0.01
+    },
+    "random_forest": {
+      "ntree": 500,
+      "max_text_features": 450,
+      "nodesize": 1
+    },
+    "xgboost": {
+      "objective": "multi:softprob",
+      "eval_metric": "mlogloss",
+      "eta": 0.1,
+      "max_depth": 8,
+      "subsample": 0.8,
+      "colsample_bytree": 0.8,
+      "nrounds": 240,
+      "min_child_weight": 1,
+      "gamma": 0,
+      "lambda": 1,
+      "alpha": 0,
+      "tree_method": "hist"
+    }
+  },
+  "comparison_runs": [
+    {
+      "name": "svm_full_allstates",
+      "hierarchy": {
+        "stage1_model": "svm",
+        "stage2_model": "svm",
+        "fallback_model": "svm"
+      }
+    },
+    {
+      "name": "random_forest_full_allstates",
+      "hierarchy": {
+        "stage1_model": "random_forest",
+        "stage2_model": "random_forest",
+        "fallback_model": "random_forest"
+      }
+    },
+    {
+      "name": "xgboost_full_allstates",
+      "hierarchy": {
+        "stage1_model": "xgboost",
+        "stage2_model": "xgboost",
+        "fallback_model": "xgboost"
+      }
+    }
+  ]
+}

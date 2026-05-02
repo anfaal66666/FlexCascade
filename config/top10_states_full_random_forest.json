@@ -1,0 +1,32 @@
+{
+  "output_dir": "results/top10_states_full_random_forest",
+  "feature_cache_dir": "data/feature_cache",
+  "python_cmd": "/opt/anaconda3/bin/python",
+  "max_rows": null,
+  "top_n_states": 10,
+  "min_issuer_count": 1,
+  "embedding": {
+    "strategy": "tfidf",
+    "min_df": 2,
+    "use_bigrams": true,
+    "max_features": 4000,
+    "max_doc_tokens": 900
+  },
+  "models": {
+    "random_forest": {
+      "ntree": 500,
+      "max_text_features": 450,
+      "nodesize": 1
+    }
+  },
+  "comparison_runs": [
+    {
+      "name": "random_forest_top10_states",
+      "hierarchy": {
+        "stage1_model": "random_forest",
+        "stage2_model": "random_forest",
+        "fallback_model": "random_forest"
+      }
+    }
+  ]
+}

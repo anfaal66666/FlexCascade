@@ -1,0 +1,42 @@
+{
+  "output_dir": "results/courtlistener_fast_10states_svm",
+  "python_cmd": "/Library/Developer/CommandLineTools/usr/bin/python3",
+  "max_rows": 5000,
+  "min_issuer_count": 5,
+  "state_subset": [
+    "illinois",
+    "california",
+    "texas",
+    "new-york",
+    "florida",
+    "pennsylvania",
+    "ohio",
+    "georgia",
+    "michigan",
+    "north-carolina"
+  ],
+  "dataset": {
+    "source": "courtlistener",
+    "courtlistener_dir": "data/courtlistener",
+    "courtlistener_aggregate_level": "cluster",
+    "courtlistener_require_state": true,
+    "prepared_path": "data/processed/courtlistener_fast_10states_seed42.csv.gz"
+  },
+  "embedding": {
+    "strategy": "tfidf",
+    "max_features": 2500,
+    "min_df": 3,
+    "max_doc_tokens": 500,
+    "use_bigrams": false
+  },
+  "comparison_runs": [
+    {
+      "name": "svm_courtlistener_fast_10states",
+      "hierarchy": {
+        "stage1_model": "svm",
+        "stage2_model": "svm",
+        "fallback_model": "svm"
+      }
+    }
+  ]
+}

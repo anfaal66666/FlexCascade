@@ -26,6 +26,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--split", default="us")
     parser.add_argument("--max-rows", type=int, default=None)
     parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument("--states", nargs="*", default=None)
     return parser.parse_args()
 
 
@@ -40,6 +41,9 @@ def main() -> int:
         cache_dir=args.cache_dir,
         verification_mode="no_checks",
     )
+    if args.states:
+        wanted = {state.strip() for state in args.states if state.strip()}
+        dataset = dataset.filter(lambda row: (row.get("state") or "").strip() in wanted)
     if args.max_rows is not None and args.max_rows < len(dataset):
         dataset = dataset.shuffle(seed=args.seed).select(range(args.max_rows))
 

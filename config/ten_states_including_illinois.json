@@ -1,0 +1,49 @@
+{
+  "output_dir": "results/ten_states_including_illinois",
+  "python_cmd": "/opt/anaconda3/bin/python",
+  "max_rows": null,
+  "state_subset": [
+    "pennsylvania",
+    "georgia",
+    "montana",
+    "alabama",
+    "arkansas",
+    "nebraska",
+    "west-virginia",
+    "florida",
+    "maine",
+    "illinois"
+  ],
+  "embedding": {
+    "strategy": "tfidf",
+    "min_df": 2,
+    "use_bigrams": true,
+    "max_features": 12000
+  },
+  "comparison_runs": [
+    {
+      "name": "svm_10_states_il",
+      "hierarchy": {
+        "stage1_model": "svm",
+        "stage2_model": "svm",
+        "fallback_model": "svm"
+      }
+    },
+    {
+      "name": "random_forest_10_states_il",
+      "hierarchy": {
+        "stage1_model": "random_forest",
+        "stage2_model": "random_forest",
+        "fallback_model": "random_forest"
+      }
+    },
+    {
+      "name": "xgboost_10_states_il",
+      "hierarchy": {
+        "stage1_model": "xgboost",
+        "stage2_model": "xgboost",
+        "fallback_model": "xgboost"
+      }
+    }
+  ]
+}

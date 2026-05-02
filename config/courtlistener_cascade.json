@@ -1,0 +1,43 @@
+{
+  "dataset": {
+    "source": "courtlistener",
+    "courtlistener_dir": "data/courtlistener",
+    "courtlistener_aggregate_level": "cluster",
+    "courtlistener_require_state": true,
+    "prepared_path": "data/processed/courtlistener_training.csv.gz"
+  },
+  "max_rows": 50000,
+  "top_n_states": 15,
+  "seed": 42,
+  "min_issuer_count": 10,
+  "split": "train",
+  "cache_dir": "cache",
+  "processed_dir": "data/processed",
+  "results_dir": "results/courtlistener_cascade",
+  "models_dir": "results/courtlistener_cascade/models",
+  "embedding": {
+    "strategy": "tfidf"
+  },
+  "hierarchy": {
+    "stage1_model": "svm",
+    "stage2_model": "svm",
+    "fallback_model": "svm"
+  },
+  "models": {
+    "svm": {
+      "cost": 1.0,
+      "type": "C-classification",
+      "epsilon": 0.1
+    },
+    "random_forest": {
+      "ntree": 200,
+      "mtry": 10,
+      "nodesize": 1
+    },
+    "xgboost": {
+      "eta": 0.1,
+      "max_depth": 6,
+      "nrounds": 100
+    }
+  }
+}

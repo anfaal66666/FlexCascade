@@ -33,11 +33,18 @@ parse_cli_args <- function(args) {
     output_dir = "results/r_run",
     cache_dir = "data/hf_cache",
     processed_dir = "data/processed",
+    feature_cache_dir = "data/feature_cache",
+    python_cmd = "/opt/anaconda3/bin/python",
+    dataset_source = "hf_case_law",
+    courtlistener_dir = "data/courtlistener",
     split = "us",
     max_rows = 5000L,
     seed = 42L,
     min_issuer_count = 5L,
-    config_file = NULL
+    config_file = NULL,
+    state_subset = NULL,
+    top_n_states = NULL,
+    include_states = NULL
   )
 
   i <- 1L
@@ -63,6 +70,18 @@ parse_cli_args <- function(args) {
     } else if (key == "--processed-dir") {
       config$processed_dir <- value
       i <- i + 1L
+    } else if (key == "--feature-cache-dir") {
+      config$feature_cache_dir <- value
+      i <- i + 1L
+    } else if (key == "--python-cmd") {
+      config$python_cmd <- value
+      i <- i + 1L
+    } else if (key == "--dataset-source") {
+      config$dataset_source <- value
+      i <- i + 1L
+    } else if (key == "--courtlistener-dir") {
+      config$courtlistener_dir <- value
+      i <- i + 1L
     } else if (key == "--split") {
       config$split <- value
       i <- i + 1L
@@ -86,6 +105,9 @@ parse_cli_args <- function(args) {
           "[--output-dir results/r_run]",
           "[--cache-dir data/hf_cache]",
           "[--processed-dir data/processed]",
+          "[--python-cmd /opt/anaconda3/bin/python]",
+          "[--dataset-source hf_case_law|courtlistener]",
+          "[--courtlistener-dir data/courtlistener]",
           "[--split us]",
           "[--max-rows 5000]",
           "[--seed 42]",
@@ -121,10 +143,23 @@ default_experiment_config <- function() {
     output_dir = "results/r_run",
     cache_dir = "data/hf_cache",
     processed_dir = "data/processed",
+    feature_cache_dir = "data/feature_cache",
+    python_cmd = "/opt/anaconda3/bin/python",
+    dataset = list(
+      source = "hf_case_law",
+      prepared_path = NULL,
+      courtlistener_dir = "data/courtlistener",
+      courtlistener_aggregate_level = "cluster",
+      courtlistener_require_state = TRUE,
+      sample_fraction = NULL
+    ),
     split = "us",
     max_rows = 5000L,
     seed = 42L,
     min_issuer_count = 5L,
+    state_subset = NULL,
+    top_n_states = NULL,
+    include_states = NULL,
     embedding = list(
       strategy = "tfidf",
       max_features = NULL,
@@ -174,10 +209,17 @@ resolve_config <- function(cli_config) {
   config$output_dir <- cli_config$output_dir
   config$cache_dir <- cli_config$cache_dir
   config$processed_dir <- cli_config$processed_dir
+  config$feature_cache_dir <- cli_config$feature_cache_dir
+  config$python_cmd <- cli_config$python_cmd
+  config$dataset$source <- cli_config$dataset_source
+  config$dataset$courtlistener_dir <- cli_config$courtlistener_dir
   config$split <- cli_config$split
   config$max_rows <- cli_config$max_rows
   config$seed <- cli_config$seed
   config$min_issuer_count <- cli_config$min_issuer_count
+  config$state_subset <- cli_config$state_subset
+  config$top_n_states <- cli_config$top_n_states
+  config$include_states <- cli_config$include_states
 
   if (!is.null(cli_config$config_file)) {
     file_config <- jsonlite::read_json(cli_config$config_file, simplifyVector = FALSE)

@@ -1,0 +1,33 @@
+{
+  "output_dir": "results/top10_states_fast_svm",
+  "feature_cache_dir": "data/feature_cache",
+  "python_cmd": "/opt/anaconda3/bin/python",
+  "max_rows": 20000,
+  "top_n_states": 10,
+  "min_issuer_count": 1,
+  "embedding": {
+    "strategy": "tfidf",
+    "min_df": 3,
+    "use_bigrams": false,
+    "max_features": 2500,
+    "max_doc_tokens": 500
+  },
+  "models": {
+    "svm": {
+      "type": 0,
+      "cost": 2,
+      "bias": true,
+      "epsilon": 0.01
+    }
+  },
+  "comparison_runs": [
+    {
+      "name": "svm_top10_fast",
+      "hierarchy": {
+        "stage1_model": "svm",
+        "stage2_model": "svm",
+        "fallback_model": "svm"
+      }
+    }
+  ]
+}

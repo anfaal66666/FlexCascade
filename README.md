@@ -2,7 +2,12 @@
 
 This repository is now **R-first**.
 
-The main project implements a hierarchy-aware issuer classification pipeline for `HFforLegal/case-law`:
+The main project implements a hierarchy-aware issuer classification pipeline for two supported sources:
+
+- `HFforLegal/case-law`
+- `CourtListener` bulk case-law tables joined into the same flat schema
+
+Pipeline shape:
 
 - Stage 1: `document -> state`
 - Stage 2: `document -> issuer` within the predicted state
@@ -18,9 +23,11 @@ Python is used only for one support task:
 
 - exporting the Hugging Face dataset into a flat file that the R pipeline reads
 
-## Dataset target
+## Dataset targets
 
-The current project pipeline is designed for `HFforLegal/case-law`, whose dataset card lists:
+### HFforLegal/case-law
+
+The Hugging Face dataset provides:
 
 - `state`
 - `issuer`
@@ -32,6 +39,31 @@ The current project pipeline is designed for `HFforLegal/case-law`, whose datase
 
 Reference: https://huggingface.co/datasets/HFforLegal/case-law
 
+### CourtListener
+
+CourtListener does not expose a single ready training table, so this repo prepares one by joining:
+
+- `opinions`
+- `opinion-clusters`
+- `dockets`
+- `courts`
+
+The preparation step derives:
+
+- `document`: opinion text, aggregated by cluster by default
+- `issuer`: court full name
+- `state`: derived from court metadata
+
+The prepared output is written to the same flat schema used by the R pipeline:
+
+- `title`
+- `citation`
+- `docket_number`
+- `state`
+- `issuer`
+- `document`
+- `timestamp`
+
 ## Install R Dependencies
 
 ```bash
@@ -40,6 +72,12 @@ python3 -m pip install datasets pandas
 ```
 
 The Python install is only for `scripts/export_hf_case_law.py`, which exports the Hugging Face dataset into a flat file for the R pipeline.
+
+For CourtListener preparation, also install:
+
+```bash
+python3 -m pip install duckdb pandas
+```
 
 ## Run experiments
 
@@ -61,10 +99,33 @@ Run a mixed-model hierarchy from a config file:
 Rscript run_experiment.R --config config/mixed_models.json
 ```
 
+Run the 10-state subset that includes Illinois:
+
+```bash
+Rscript run_experiment.R --config config/ten_states_including_illinois.json
+```
+
+Tune fixed parameters on an all-state sample, then train the full all-state models:
+
+```bash
+Rscript run_experiment.R --config config/all_states_tuning_20k.json
+python3 scripts/build_full_config_from_tuning.py \
+  --tuning-dir results/all_states_tuning_20k \
+  --base-config config/all_states_full_best.json \
+  --output-config config/all_states_full_selected.json
+Rscript run_experiment.R --config config/all_states_full_selected.json
+```
+
 Run with pre-trained embeddings:
 
 ```bash
 Rscript run_experiment.R --config config/glove_hybrid.json
+```
+
+Run the CourtListener path once the four core bulk files are downloaded:
+
+```bash
+Rscript run_experiment.R --config config/courtlistener_top10_fast_svm.json
 ```
 
 Outputs:
@@ -73,6 +134,13 @@ Outputs:
 - `selected_configs.json`: tuned fallback configuration per algorithm
 - `split_summary.json`: dataset split sizes and label counts
 - `models/`: serialized `.rds` trained models
+
+Model artifact naming:
+
+- global state classifier: `ModelType_Scope_Stage1State_RunName.rds`
+- global issuer classifier: `ModelType_Scope_GlobalIssuer_RunName.rds`
+- local Stage 2 issuer classifier: `ModelType_State_TwoStageLocalIssuer_RunName.rds`
+- full cascade bundle: `Stage1-Stage2-Fallback_Scope_TwoStageCascade_RunName.rds`
 
 ## Pipeline summary
 
@@ -96,6 +164,7 @@ The project includes:
 
 - `run_experiment.R`: command-line entry point
 - `R/io.R`: data export and loading
+- `scripts/prepare_courtlistener_dataset.py`: joins CourtListener bulk tables into training format
 - `R/features.R`: vocabulary building and sparse feature generation
 - `R/models.R`: switchable estimator wrappers
 - `R/hierarchy.R`: hierarchical cascade logic
@@ -103,6 +172,7 @@ The project includes:
 - `R/experiment.R`: end-to-end training and comparison
 - `scripts/export_hf_case_law.py`: Python helper for dataset export
 - `config/`: example experiment configurations
+- `scripts/profile_states.py`: dataset state/issuer profiler
 
 ## Embedding strategies
 
@@ -192,6 +262,44 @@ python3 scripts/download_caselaw_bulk.py
 ```
 
 This downloads all reporter `zip` files under `data/caselaw_full/` and keeps resumable progress in `data/caselaw_full/download_state.json`.
+
+## CourtListener bulk download
+
+To download the four core CourtListener files needed for the join:
+
+```bash
+python3 scripts/download_courtlistener.py
+```
+
+This fetches:
+
+- `courts-*.csv.bz2`
+- `dockets-*.csv.bz2`
+- `opinion-clusters-*.csv.bz2`
+- `opinions-*.csv.bz2`
+
+into `data/courtlistener/` and keeps resumable progress in `data/courtlistener/download_state.json`.
+
+## CourtListener preprocessing
+
+To prepare a flat training table after the download completes:
+
+```bash
+python3 scripts/prepare_courtlistener_dataset.py \
+  --input-dir data/courtlistener \
+  --output data/processed/courtlistener_case_law_full.csv.gz \
+  --aggregate-level cluster \
+  --require-state
+```
+
+Useful options:
+
+- `--states illinois california`
+- `--top-n-states 10`
+- `--include-states illinois`
+- `--max-rows 20000`
+
+The script keeps support for the existing Hugging Face dataset path, so both sources can feed the same R training pipeline.
 
 ## Source
 
