@@ -18,15 +18,10 @@
   "embedding": {
     "strategy": "tfidf"
   },
-  "hierarchy": {
-    "stage1_model": "svm",
-    "stage2_model": "svm",
-    "fallback_model": "svm"
-  },
   "models": {
     "svm": {
       "cost": 1.0,
-      "type": "C-classification",
+      "type": 0,
       "epsilon": 0.1
     },
     "random_forest": {
@@ -39,5 +34,31 @@
       "max_depth": 6,
       "nrounds": 100
     }
-  }
+  },
+  "comparison_runs": [
+    {
+      "name": "svm_cascade",
+      "hierarchy": {
+        "stage1_model": "svm",
+        "stage2_model": "svm",
+        "fallback_model": "svm"
+      }
+    },
+    {
+      "name": "random_forest_cascade",
+      "hierarchy": {
+        "stage1_model": "random_forest",
+        "stage2_model": "random_forest",
+        "fallback_model": "random_forest"
+      }
+    },
+    {
+      "name": "xgboost_cascade",
+      "hierarchy": {
+        "stage1_model": "xgboost",
+        "stage2_model": "xgboost",
+        "fallback_model": "xgboost"
+      }
+    }
+  ]
 }

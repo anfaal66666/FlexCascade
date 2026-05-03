@@ -100,7 +100,7 @@ prepare_common_frame <- function(frame, config) {
   frame[, state := normalize_text(state)]
   frame[, issuer := normalize_text(issuer)]
   frame[, document := normalize_text(document)]
-  frame[, timestamp := as.POSIXct(timestamp, tz = "UTC")]
+  frame[, timestamp := as.POSIXct(timestamp, format = "%Y-%m-%d", tz = "UTC")]
   frame <- frame[document != "" & state != "" & issuer != "" & !is.na(timestamp)]
 
   if (!is.null(config$state_subset) && length(config$state_subset) > 0L) {
