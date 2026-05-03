@@ -1,0 +1,162 @@
+class,support,tp,fp,fn,precision,recall,f1
+Alabama Court of Appeals,356,2,207,354,0.00956937799043062,0.00561797752808989,0.00707964601769912
+Alaska Supreme Court,6,0,230,6,0,0,0
+Appellate Court of Illinois,4103,31,170,4072,0.154228855721393,0.00755544723373142,0.0144052044609665
+Appellate Division of the Supreme Court of the State of New York,46,0,199,46,0,0,0
+Arizona Supreme Court,13,0,201,13,0,0,0
+Arkansas Attorney General Reports,110,0,213,110,0,0,0
+Board of Veterans' Appeals,29,0,210,29,0,0,0
+California Court of Appeal,56,0,190,56,0,0,0
+California Supreme Court,74,0,209,74,0,0,0
+Colorado Attorney General Reports,4,0,207,4,0,0,0
+Colorado Court of Appeals,8,0,220,8,0,0,0
+Commonwealth Court of Pennsylvania,28,0,220,28,0,0,0
+Connecticut Appellate Court,6,0,215,6,0,0,0
+Connecticut Superior Court,1154,6,200,1148,0.029126213592233,0.00519930675909879,0.00882352941176471
+Court for the Trial of Impeachments and Correction of Errors,105,1,217,104,0.00458715596330275,0.00952380952380953,0.00619195046439629
+Court of Appeals for the D.C. Circuit,9,0,199,9,0,0,0
+Court of Appeals for the Eighth Circuit,41,0,199,41,0,0,0
+Court of Appeals for the Eleventh Circuit,27,0,207,27,0,0,0
+Court of Appeals for the Federal Circuit,56,1,185,55,0.00537634408602151,0.0178571428571429,0.00826446280991736
+Court of Appeals for the Fifth Circuit,166,1,207,165,0.00480769230769231,0.00602409638554217,0.0053475935828877
+Court of Appeals for the First Circuit,40,1,189,39,0.00526315789473684,0.025,0.00869565217391304
+Court of Appeals for the Fourth Circuit,79,0,197,79,0,0,0
+Court of Appeals for the Ninth Circuit,119,1,196,118,0.0050761421319797,0.00840336134453782,0.00632911392405063
+Court of Appeals for the Second Circuit,126,2,207,124,0.00956937799043062,0.0158730158730159,0.0119402985074627
+Court of Appeals for the Seventh Circuit,44,0,194,44,0,0,0
+Court of Appeals for the Sixth Circuit,26,0,209,26,0,0,0
+Court of Appeals for the Tenth Circuit,44,0,178,44,0,0,0
+Court of Appeals for the Third Circuit,44,0,182,44,0,0,0
+Court of Appeals of Arkansas,3,0,194,3,0,0,0
+Court of Appeals of Georgia,38,0,188,38,0,0,0
+Court of Appeals of Iowa,9,0,191,9,0,0,0
+Court of Appeals of Kansas,270,2,213,268,0.00930232558139535,0.00740740740740741,0.00824742268041237
+Court of Appeals of Kentucky (pre-1976),58,0,175,58,0,0,0
+Court of Appeals of Maryland,359,0,198,359,0,0,0
+Court of Appeals of Minnesota,9,0,170,9,0,0,0
+Court of Appeals of Mississippi,28,0,180,28,0,0,0
+Court of Appeals of North Carolina,1257,9,186,1248,0.0461538461538462,0.00715990453460621,0.012396694214876
+Court of Appeals of Oregon,323,0,197,323,0,0,0
+Court of Appeals of South Carolina,5,0,206,5,0,0,0
+Court of Appeals of Texas,39,1,193,38,0.00515463917525773,0.0256410256410256,0.00858369098712446
+Court of Appeals of Washington,45,0,198,45,0,0,0
+Court of Appeals of Wisconsin,103,0,190,103,0,0,0
+Court of Chancery of Delaware,15,1,201,14,0.00495049504950495,0.0666666666666667,0.00921658986175115
+Court of Civil Appeals of Alabama,486,4,172,482,0.0227272727272727,0.00823045267489712,0.0120845921450151
+Court of Claims of Illinois,394,0,199,394,0,0,0
+Court of Criminal Appeals of Alabama,864,2,172,862,0.0114942528735632,0.00231481481481482,0.00385356454720617
+Court of Criminal Appeals of Oklahoma,10,0,190,10,0,0,0
+Court of Criminal Appeals of Texas,106,1,182,105,0.00546448087431694,0.00943396226415094,0.0069204152249135
+Court of Customs and Patent Appeals,10,0,178,10,0,0,0
+Court of King's Bench,36,0,171,36,0,0,0
+District Court of Appeal of Florida,49,0,165,49,0,0,0
+"District Court, C.D. California",4,0,185,4,0,0,0
+"District Court, D. Alaska",2,0,188,2,0,0,0
+"District Court, D. Arizona",4,0,183,4,0,0,0
+"District Court, D. Massachusetts",4,0,194,4,0,0,0
+"District Court, D. New Hampshire",4,0,182,4,0,0,0
+"District Court, D. New Jersey",3,0,160,3,0,0,0
+"District Court, D. South Carolina",5,0,181,5,0,0,0
+"District Court, District of Columbia",6,0,186,6,0,0,0
+"District Court, E.D. California",7,0,188,7,0,0,0
+"District Court, E.D. New York",3,0,182,3,0,0,0
+"District Court, E.D. Pennsylvania",4,1,193,3,0.00515463917525773,0.25,0.0101010101010101
+"District Court, M.D. Florida",3,0,184,3,0,0,0
+"District Court, N.D. California",3,0,174,3,0,0,0
+"District Court, N.D. Illinois",4,0,189,4,0,0,0
+"District Court, N.D. Indiana",3,0,193,3,0,0,0
+"District Court, S.D. Florida",5,0,199,5,0,0,0
+"District Court, S.D. Illinois",3,0,179,3,0,0,0
+"District Court, S.D. New York",28,0,199,28,0,0,0
+"District Court, W.D. Michigan",6,0,198,6,0,0,0
+District of Columbia Court of Appeals,49,0,178,49,0,0,0
+Florida Attorney General Reports,31,0,176,31,0,0,0
+Florida Fifth District Court of Appeal,6,0,189,6,0,0,0
+Florida First District Court of Appeal,9,0,146,9,0,0,0
+Florida Fourth District Court of Appeal,3,0,185,3,0,0,0
+Florida Second District Court of Appeal,12,0,193,12,0,0,0
+Florida Third District Court of Appeal,9,0,178,9,0,0,0
+Hawaii Intermediate Court of Appeals,84,0,174,84,0,0,0
+Hawaii Supreme Court,16,0,180,16,0,0,0
+Idaho Court of Appeals,13,0,182,13,0,0,0
+Idaho Supreme Court,14,0,186,14,0,0,0
+Illinois Supreme Court,524,0,180,524,0,0,0
+Indiana Court of Appeals,231,3,182,228,0.0162162162162162,0.012987012987013,0.0144230769230769
+Indiana Supreme Court,15,0,212,15,0,0,0
+Louisiana Attorney General Reports,173,0,185,173,0,0,0
+Louisiana Court of Appeal,103,0,169,103,0,0,0
+Massachusetts Appeals Court,39,0,167,39,0,0,0
+Massachusetts Supreme Judicial Court,45,0,178,45,0,0,0
+Michigan Supreme Court,126,1,189,125,0.00526315789473684,0.00793650793650794,0.00632911392405063
+Mississippi Supreme Court,534,2,194,532,0.0102040816326531,0.00374531835205993,0.00547945205479452
+Missouri Attorney General Reports,159,0,172,159,0,0,0
+Missouri Court of Appeals,165,1,171,164,0.00581395348837209,0.00606060606060606,0.00593471810089021
+Montana Supreme Court,149,2,163,147,0.0121212121212121,0.0134228187919463,0.0127388535031847
+Nebraska Attorney General Reports,204,1,184,203,0.00540540540540541,0.00490196078431373,0.0051413881748072
+Nebraska Court of Appeals,4,0,183,4,0,0,0
+Nevada Supreme Court,465,5,165,460,0.0294117647058824,0.010752688172043,0.015748031496063
+New Jersey Court of Chancery,5,0,171,5,0,0,0
+New Jersey Superior Court Appellate Division,173,2,181,171,0.0109289617486339,0.0115606936416185,0.0112359550561798
+New Jersey Tax Court,7,0,200,7,0,0,0
+New Mexico Supreme Court,48,0,178,48,0,0,0
+New York Attorney General Reports,59,2,189,57,0.0104712041884817,0.0338983050847458,0.016
+New York Court of Appeals,530,4,200,526,0.0196078431372549,0.00754716981132076,0.0108991825613079
+New York Supreme Court,12,0,178,12,0,0,0
+New York Surrogate's Court,2,0,190,2,0,0,0
+North Carolina Industrial Commission,311,0,199,311,0,0,0
+North Dakota Supreme Court,7,0,169,7,0,0,0
+Ohio Court of Appeals,537,2,211,535,0.00938967136150235,0.0037243947858473,0.00533333333333333
+Ohio Supreme Court,509,1,175,508,0.00568181818181818,0.00196463654223969,0.00291970802919708
+Oklahoma Attorney General Reports,245,1,163,244,0.00609756097560976,0.00408163265306122,0.00488997555012225
+Oregon Supreme Court,185,3,191,182,0.0154639175257732,0.0162162162162162,0.0158311345646438
+Oregon Tax Court,10,0,165,10,0,0,0
+South Dakota Supreme Court,50,0,173,50,0,0,0
+Superior Court of Delaware,20,0,184,20,0,0,0
+Superior Court of North Carolina,53,0,189,53,0,0,0
+Superior Court of Pennsylvania,1323,8,190,1315,0.0404040404040404,0.00604686318972033,0.0105193951347798
+Superior Court of Rhode Island,13,0,166,13,0,0,0
+Supreme Court of Alabama,454,1,163,453,0.00609756097560976,0.00220264317180617,0.00323624595469256
+Supreme Court of Arkansas,11,0,194,11,0,0,0
+Supreme Court of Colorado,11,0,169,11,0,0,0
+Supreme Court of Connecticut,18,1,189,17,0.00526315789473684,0.0555555555555556,0.00961538461538461
+Supreme Court of Delaware,191,0,201,191,0,0,0
+Supreme Court of Florida,780,4,179,776,0.0218579234972678,0.00512820512820513,0.0083073727933541
+Supreme Court of Georgia,221,0,169,221,0,0,0
+Supreme Court of Iowa,11,0,194,11,0,0,0
+Supreme Court of Kansas,4,0,186,4,0,0,0
+Supreme Court of Louisiana,304,1,173,303,0.00574712643678161,0.00328947368421053,0.00418410041841004
+Supreme Court of Minnesota,43,0,189,43,0,0,0
+Supreme Court of Missouri,348,3,177,345,0.0166666666666667,0.00862068965517241,0.0113636363636364
+Supreme Court of New Hampshire,19,0,182,19,0,0,0
+Supreme Court of New Jersey,79,0,178,79,0,0,0
+Supreme Court of North Carolina,400,3,190,397,0.0155440414507772,0.0075,0.0101180438448567
+Supreme Court of Oklahoma,10,0,184,10,0,0,0
+Supreme Court of Pennsylvania,125,1,181,124,0.0054945054945055,0.008,0.00651465798045603
+Supreme Court of Puerto Rico,6,0,192,6,0,0,0
+Supreme Court of Rhode Island,11,0,188,11,0,0,0
+Supreme Court of South Carolina,27,0,180,27,0,0,0
+Supreme Court of the United States,7112,43,163,7069,0.20873786407767,0.00604611923509561,0.0117518447663296
+Supreme Court of Vermont,64,0,186,64,0,0,0
+Supreme Court of Virginia,7,0,189,7,0,0,0
+Tennessee Superior Court for Law and Equity,17,0,190,17,0,0,0
+Tennessee Supreme Court,6,0,187,6,0,0,0
+Texas Attorney General Reports,55,1,181,54,0.0054945054945055,0.0181818181818182,0.00843881856540084
+"Texas Court of Appeals, 10th District (Waco)",4,0,192,4,0,0,0
+"Texas Court of Appeals, 11th District (Eastland)",28,0,184,28,0,0,0
+"Texas Court of Appeals, 12th District (Tyler)",102,1,196,101,0.0050761421319797,0.00980392156862745,0.00668896321070234
+"Texas Court of Appeals, 13th District",52,1,199,51,0.005,0.0192307692307692,0.00793650793650794
+"Texas Court of Appeals, 2nd District (Fort Worth)",356,0,213,356,0,0,0
+"Texas Court of Appeals, 3rd District (Austin)",99,0,196,99,0,0,0
+"Texas Court of Appeals, 4th District (San Antonio)",52,0,174,52,0,0,0
+"Texas Court of Appeals, 6th District (Texarkana)",13,0,190,13,0,0,0
+"Texas Court of Appeals, 7th District (Amarillo)",292,2,208,290,0.00952380952380953,0.00684931506849315,0.00796812749003984
+"Texas Court of Appeals, 8th District (El Paso)",20,0,198,20,0,0,0
+"Texas Court of Appeals, 9th District (Beaumont)",202,0,195,202,0,0,0
+Texas Supreme Court,17,0,187,17,0,0,0
+U.S. Circuit Court for the District of District of Columbia,4,0,224,4,0,0,0
+U.S. Circuit Court for the District of Massachusetts,3,0,197,3,0,0,0
+United States Board of Tax Appeals,5,0,224,5,0,0,0
+United States Court of International Trade,4,0,248,4,0,0,0
+Utah Supreme Court,69,1,228,68,0.00436681222707424,0.0144927536231884,0.00671140939597316
+Washington Supreme Court,44,0,227,44,0,0,0
+Wisconsin Supreme Court,181,1,269,180,0.0037037037037037,0.00552486187845304,0.00443458980044346

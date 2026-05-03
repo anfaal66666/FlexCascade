@@ -1,0 +1,113 @@
+{
+  "svm_cascade": {
+    "scope": "Top15States",
+    "hierarchy": {
+      "stage1_model": "svm",
+      "stage2_model": "svm",
+      "fallback_model": "svm"
+    },
+    "model_files": {
+      "state_model": "Svm_Top15States_Stage1State_svm_cascade.rds",
+      "global_issuer_model": "Svm_Top15States_GlobalIssuer_svm_cascade.rds",
+      "cascade": "Svm-Svm-Svm_Top15States_TwoStageCascade_svm_cascade.rds",
+      "stage2_local_models": ["Svm_s_TwoStageLocalIssuer_svm_cascade.rds", "Svm_f_TwoStageLocalIssuer_svm_cascade.rds", "Svm_ss_TwoStageLocalIssuer_svm_cascade.rds", "Svm_st_TwoStageLocalIssuer_svm_cascade.rds", "Svm_sa_TwoStageLocalIssuer_svm_cascade.rds", "Svm_fs_TwoStageLocalIssuer_svm_cascade.rds", "Svm_fd_TwoStageLocalIssuer_svm_cascade.rds", "Svm_sag_TwoStageLocalIssuer_svm_cascade.rds", "Svm_i_TwoStageLocalIssuer_svm_cascade.rds", "Svm_ts_TwoStageLocalIssuer_svm_cascade.rds"]
+    },
+    "model_params": {
+      "svm": {
+        "type": 0,
+        "cost": 1,
+        "bias": true,
+        "epsilon": 0.1
+      },
+      "random_forest": {
+        "ntree": 200,
+        "max_text_features": 250,
+        "mtry": 10,
+        "nodesize": 1
+      },
+      "xgboost": {
+        "objective": "multi:softprob",
+        "eval_metric": "mlogloss",
+        "eta": 0.1,
+        "max_depth": 6,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8,
+        "nrounds": 100
+      }
+    }
+  },
+  "random_forest_cascade": {
+    "scope": "Top15States",
+    "hierarchy": {
+      "stage1_model": "random_forest",
+      "stage2_model": "random_forest",
+      "fallback_model": "random_forest"
+    },
+    "model_files": {
+      "state_model": "RandomForest_Top15States_Stage1State_random_forest_cascade.rds",
+      "global_issuer_model": "RandomForest_Top15States_GlobalIssuer_random_forest_cascade.rds",
+      "cascade": "RandomForest-RandomForest-RandomForest_Top15States_TwoStageCascade_random_forest_cascade.rds",
+      "stage2_local_models": ["RandomForest_s_TwoStageLocalIssuer_random_forest_cascade.rds", "RandomForest_f_TwoStageLocalIssuer_random_forest_cascade.rds", "RandomForest_ss_TwoStageLocalIssuer_random_forest_cascade.rds", "RandomForest_st_TwoStageLocalIssuer_random_forest_cascade.rds", "RandomForest_sa_TwoStageLocalIssuer_random_forest_cascade.rds", "RandomForest_fs_TwoStageLocalIssuer_random_forest_cascade.rds", "RandomForest_fd_TwoStageLocalIssuer_random_forest_cascade.rds", "RandomForest_sag_TwoStageLocalIssuer_random_forest_cascade.rds", "RandomForest_i_TwoStageLocalIssuer_random_forest_cascade.rds", "RandomForest_ts_TwoStageLocalIssuer_random_forest_cascade.rds"]
+    },
+    "model_params": {
+      "svm": {
+        "type": 0,
+        "cost": 1,
+        "bias": true,
+        "epsilon": 0.1
+      },
+      "random_forest": {
+        "ntree": 200,
+        "max_text_features": 250,
+        "mtry": 10,
+        "nodesize": 1
+      },
+      "xgboost": {
+        "objective": "multi:softprob",
+        "eval_metric": "mlogloss",
+        "eta": 0.1,
+        "max_depth": 6,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8,
+        "nrounds": 100
+      }
+    }
+  },
+  "xgboost_cascade": {
+    "scope": "Top15States",
+    "hierarchy": {
+      "stage1_model": "xgboost",
+      "stage2_model": "xgboost",
+      "fallback_model": "xgboost"
+    },
+    "model_files": {
+      "state_model": "Xgboost_Top15States_Stage1State_xgboost_cascade.rds",
+      "global_issuer_model": "Xgboost_Top15States_GlobalIssuer_xgboost_cascade.rds",
+      "cascade": "Xgboost-Xgboost-Xgboost_Top15States_TwoStageCascade_xgboost_cascade.rds",
+      "stage2_local_models": ["Xgboost_s_TwoStageLocalIssuer_xgboost_cascade.rds", "Xgboost_f_TwoStageLocalIssuer_xgboost_cascade.rds", "Xgboost_ss_TwoStageLocalIssuer_xgboost_cascade.rds", "Xgboost_st_TwoStageLocalIssuer_xgboost_cascade.rds", "Xgboost_sa_TwoStageLocalIssuer_xgboost_cascade.rds", "Xgboost_fs_TwoStageLocalIssuer_xgboost_cascade.rds", "Xgboost_fd_TwoStageLocalIssuer_xgboost_cascade.rds", "Xgboost_sag_TwoStageLocalIssuer_xgboost_cascade.rds", "Xgboost_i_TwoStageLocalIssuer_xgboost_cascade.rds", "Xgboost_ts_TwoStageLocalIssuer_xgboost_cascade.rds"]
+    },
+    "model_params": {
+      "svm": {
+        "type": 0,
+        "cost": 1,
+        "bias": true,
+        "epsilon": 0.1
+      },
+      "random_forest": {
+        "ntree": 200,
+        "max_text_features": 250,
+        "mtry": 10,
+        "nodesize": 1
+      },
+      "xgboost": {
+        "objective": "multi:softprob",
+        "eval_metric": "mlogloss",
+        "eta": 0.1,
+        "max_depth": 6,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8,
+        "nrounds": 100
+      }
+    }
+  }
+}

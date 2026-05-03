@@ -1,0 +1,7 @@
+{
+  "train_rows": 91626,
+  "validation_rows": 30499,
+  "test_rows": 30698,
+  "states": 10,
+  "issuers": 161
+}

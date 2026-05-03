@@ -1,0 +1,17 @@
+{
+  "svm_cascade": {
+    "confidence_threshold": 0.85,
+    "top_k_states": 1,
+    "global_weight": 0.35
+  },
+  "random_forest_cascade": {
+    "confidence_threshold": 0.55,
+    "top_k_states": 2,
+    "global_weight": 0.35
+  },
+  "xgboost_cascade": {
+    "confidence_threshold": 0.85,
+    "top_k_states": 2,
+    "global_weight": 0.25
+  }
+}
