@@ -1,0 +1,7 @@
+metric,value
+issuer_classes,161.0
+largest_class_share,0.23167633070558344
+top_5_share,0.48696983516841486
+top_20_share,0.7328490455404262
+top_50_share,0.9158577106000391
+effective_number_of_classes,12.159183338944334

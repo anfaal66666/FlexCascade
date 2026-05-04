@@ -25,6 +25,10 @@ data/
 # Logs and experiment outputs
 logs/
 results/
+!results/
+results/*
+!results/result_visualization_plots/
+!results/result_visualization_plots/**
 *.log
 
 # Python

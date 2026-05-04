@@ -1,0 +1,34 @@
+category,count,result_dir,algorithm,model,system,system_label
+Correct issuer,29013,r_run,random_forest_cascade,Random Forest,cascade_with_fallback,Cascade + fallback
+"Correct state, wrong issuer",930,r_run,random_forest_cascade,Random Forest,cascade_with_fallback,Cascade + fallback
+Wrong state and issuer,755,r_run,random_forest_cascade,Random Forest,cascade_with_fallback,Cascade + fallback
+Correct issuer,29055,r_run,random_forest_cascade,Random Forest,flat_issuer,Flat issuer
+"Correct state, wrong issuer",854,r_run,random_forest_cascade,Random Forest,flat_issuer,Flat issuer
+Wrong state and issuer,789,r_run,random_forest_cascade,Random Forest,flat_issuer,Flat issuer
+Correct state,29940,r_run,random_forest_cascade,Random Forest,flat_state,Flat state
+Wrong state,758,r_run,random_forest_cascade,Random Forest,flat_state,Flat state
+Correct issuer,29059,r_run,random_forest_cascade,Random Forest,plain_cascade,Plain cascade
+"Correct state, wrong issuer",884,r_run,random_forest_cascade,Random Forest,plain_cascade,Plain cascade
+Wrong state and issuer,755,r_run,random_forest_cascade,Random Forest,plain_cascade,Plain cascade
+Correct issuer,28371,r_run,svm_cascade,SVM,cascade_with_fallback,Cascade + fallback
+Wrong state and issuer,1215,r_run,svm_cascade,SVM,cascade_with_fallback,Cascade + fallback
+"Correct state, wrong issuer",1112,r_run,svm_cascade,SVM,cascade_with_fallback,Cascade + fallback
+Correct issuer,28851,r_run,svm_cascade,SVM,flat_issuer,Flat issuer
+Wrong state and issuer,1004,r_run,svm_cascade,SVM,flat_issuer,Flat issuer
+"Correct state, wrong issuer",843,r_run,svm_cascade,SVM,flat_issuer,Flat issuer
+Correct state,29483,r_run,svm_cascade,SVM,flat_state,Flat state
+Wrong state,1215,r_run,svm_cascade,SVM,flat_state,Flat state
+Correct issuer,28455,r_run,svm_cascade,SVM,plain_cascade,Plain cascade
+Wrong state and issuer,1215,r_run,svm_cascade,SVM,plain_cascade,Plain cascade
+"Correct state, wrong issuer",1028,r_run,svm_cascade,SVM,plain_cascade,Plain cascade
+Wrong state and issuer,27542,r_run,xgboost_cascade,XGBoost,cascade_with_fallback,Cascade + fallback
+Correct issuer,1622,r_run,xgboost_cascade,XGBoost,cascade_with_fallback,Cascade + fallback
+"Correct state, wrong issuer",1534,r_run,xgboost_cascade,XGBoost,cascade_with_fallback,Cascade + fallback
+Wrong state and issuer,22925,r_run,xgboost_cascade,XGBoost,flat_issuer,Flat issuer
+"Correct state, wrong issuer",7604,r_run,xgboost_cascade,XGBoost,flat_issuer,Flat issuer
+Correct issuer,169,r_run,xgboost_cascade,XGBoost,flat_issuer,Flat issuer
+Wrong state,27560,r_run,xgboost_cascade,XGBoost,flat_state,Flat state
+Correct state,3138,r_run,xgboost_cascade,XGBoost,flat_state,Flat state
+Wrong state and issuer,27542,r_run,xgboost_cascade,XGBoost,plain_cascade,Plain cascade
+Correct issuer,3097,r_run,xgboost_cascade,XGBoost,plain_cascade,Plain cascade
+"Correct state, wrong issuer",59,r_run,xgboost_cascade,XGBoost,plain_cascade,Plain cascade

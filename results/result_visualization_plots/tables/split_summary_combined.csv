@@ -1,0 +1,4 @@
+result_dir,split,rows
+r_run,train,91626
+r_run,validation,30499
+r_run,test,30698
