@@ -1,0 +1,41 @@
+{
+  "xgboost_cascade_tuned": {
+    "scope": "Top15States",
+    "hierarchy": {
+      "stage1_model": "xgboost",
+      "stage2_model": "xgboost",
+      "fallback_model": "xgboost"
+    },
+    "model_files": {
+      "state_model": "Xgboost_Top15States_Stage1State_xgboost_cascade_tuned.rds",
+      "global_issuer_model": "Xgboost_Top15States_GlobalIssuer_xgboost_cascade_tuned.rds",
+      "cascade": "Xgboost-Xgboost-Xgboost_Top15States_TwoStageCascade_xgboost_cascade_tuned.rds",
+      "stage2_local_models": ["Xgboost_s_TwoStageLocalIssuer_xgboost_cascade_tuned.rds", "Xgboost_f_TwoStageLocalIssuer_xgboost_cascade_tuned.rds", "Xgboost_ss_TwoStageLocalIssuer_xgboost_cascade_tuned.rds", "Xgboost_st_TwoStageLocalIssuer_xgboost_cascade_tuned.rds", "Xgboost_sa_TwoStageLocalIssuer_xgboost_cascade_tuned.rds", "Xgboost_fs_TwoStageLocalIssuer_xgboost_cascade_tuned.rds", "Xgboost_fd_TwoStageLocalIssuer_xgboost_cascade_tuned.rds", "Xgboost_sag_TwoStageLocalIssuer_xgboost_cascade_tuned.rds", "Xgboost_i_TwoStageLocalIssuer_xgboost_cascade_tuned.rds", "Xgboost_ts_TwoStageLocalIssuer_xgboost_cascade_tuned.rds"]
+    },
+    "model_params": {
+      "svm": {
+        "type": 0,
+        "cost": 1,
+        "bias": true
+      },
+      "random_forest": {
+        "ntree": 300,
+        "max_text_features": 250
+      },
+      "xgboost": {
+        "objective": "multi:softprob",
+        "eval_metric": "mlogloss",
+        "eta": 0.01,
+        "max_depth": 10,
+        "subsample": 0.7,
+        "colsample_bytree": 0.7,
+        "nrounds": 500,
+        "min_child_weight": 5,
+        "gamma": 1,
+        "lambda": 50,
+        "alpha": 0.5,
+        "scale_pos_weight": 1
+      }
+    }
+  }
+}

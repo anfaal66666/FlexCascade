@@ -1,0 +1,31 @@
+{
+  "output_dir": "results/courtlistener_allstates_10pct_svm",
+  "python_cmd": "/Library/Developer/CommandLineTools/usr/bin/python3",
+  "max_rows": null,
+  "min_issuer_count": 5,
+  "dataset": {
+    "source": "courtlistener",
+    "courtlistener_dir": "data/courtlistener",
+    "courtlistener_aggregate_level": "cluster",
+    "courtlistener_require_state": true,
+    "sample_fraction": 0.1,
+    "prepared_path": "data/processed/courtlistener_case_law_10pct_allstates_seed42.csv.gz"
+  },
+  "embedding": {
+    "strategy": "tfidf",
+    "max_features": 2500,
+    "min_df": 3,
+    "max_doc_tokens": 500,
+    "use_bigrams": false
+  },
+  "comparison_runs": [
+    {
+      "name": "svm_courtlistener_allstates_10pct",
+      "hierarchy": {
+        "stage1_model": "svm",
+        "stage2_model": "svm",
+        "fallback_model": "svm"
+      }
+    }
+  ]
+}

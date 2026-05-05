@@ -1,0 +1,31 @@
+{
+  "output_dir": "results/all_states_full_svm",
+  "python_cmd": "/opt/anaconda3/bin/python",
+  "max_rows": null,
+  "min_issuer_count": 1,
+  "embedding": {
+    "strategy": "tfidf",
+    "min_df": 2,
+    "use_bigrams": true,
+    "max_features": 6000,
+    "max_doc_tokens": 1200
+  },
+  "models": {
+    "svm": {
+      "type": 0,
+      "cost": 2,
+      "bias": true,
+      "epsilon": 0.01
+    }
+  },
+  "comparison_runs": [
+    {
+      "name": "svm_full_allstates",
+      "hierarchy": {
+        "stage1_model": "svm",
+        "stage2_model": "svm",
+        "fallback_model": "svm"
+      }
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "run": "random_forest_cascade",
+  "feature_algorithm": "random_forest",
+  "feature_cache_key": "Top15States__train__42__tfidf__400__800__2__TRUE__50000__10",
+  "train_rows": 91626,
+  "train_cols": 408,
+  "validation_rows": 30499,
+  "test_rows": 30698
+}

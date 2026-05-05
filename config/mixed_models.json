@@ -1,0 +1,53 @@
+{
+  "output_dir": "results/mixed_models_run",
+  "max_rows": 5000,
+  "embedding": {
+    "strategy": "tfidf",
+    "min_df": 2,
+    "use_bigrams": true
+  },
+  "models": {
+    "svm": {
+      "type": 0,
+      "cost": 1.0,
+      "bias": true
+    },
+    "random_forest": {
+      "ntree": 300,
+      "max_text_features": 250
+    },
+    "xgboost": {
+      "eta": 0.15,
+      "max_depth": 8,
+      "subsample": 0.8,
+      "colsample_bytree": 0.8,
+      "nrounds": 160
+    }
+  },
+  "comparison_runs": [
+    {
+      "name": "svm_all",
+      "hierarchy": {
+        "stage1_model": "svm",
+        "stage2_model": "svm",
+        "fallback_model": "svm"
+      }
+    },
+    {
+      "name": "svm_xgb_xgb",
+      "hierarchy": {
+        "stage1_model": "svm",
+        "stage2_model": "xgboost",
+        "fallback_model": "xgboost"
+      }
+    },
+    {
+      "name": "svm_rf_xgb",
+      "hierarchy": {
+        "stage1_model": "svm",
+        "stage2_model": "random_forest",
+        "fallback_model": "xgboost"
+      }
+    }
+  ]
+}

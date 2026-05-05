@@ -1,0 +1,48 @@
+# Data and datasets
+data/
+*.csv
+*.csv.gz
+*.tsv
+*.parquet
+*.arrow
+*.feather
+*.jsonl
+*.ndjson
+*.zip
+*.tar
+*.gz
+*.bz2
+*.xz
+
+# Documents and local exports
+*.pdf
+*.doc
+*.docx
+*.ppt
+*.pptx
+*.numbers
+
+# Logs and experiment outputs
+logs/
+results/
+!results/
+results/*
+!results/result_visualization_plots/
+!results/result_visualization_plots/**
+*.log
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.venv/
+venv/
+
+# R
+.Rhistory
+.RData
+.Rproj.user/
+
+# OS/editor
+.DS_Store

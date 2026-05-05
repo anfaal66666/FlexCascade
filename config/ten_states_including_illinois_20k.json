@@ -1,0 +1,68 @@
+{
+  "output_dir": "results/ten_states_including_illinois_20k",
+  "python_cmd": "/opt/anaconda3/bin/python",
+  "max_rows": 20000,
+  "state_subset": [
+    "pennsylvania",
+    "georgia",
+    "montana",
+    "alabama",
+    "arkansas",
+    "nebraska",
+    "west-virginia",
+    "florida",
+    "maine",
+    "illinois"
+  ],
+  "embedding": {
+    "strategy": "tfidf",
+    "min_df": 2,
+    "use_bigrams": true,
+    "max_features": 6000,
+    "max_doc_tokens": 1000
+  },
+  "models": {
+    "svm": {
+      "type": 0,
+      "cost": 1.0,
+      "bias": true
+    },
+    "random_forest": {
+      "ntree": 200,
+      "max_text_features": 180
+    },
+    "xgboost": {
+      "eta": 0.15,
+      "max_depth": 6,
+      "subsample": 0.8,
+      "colsample_bytree": 0.8,
+      "nrounds": 100
+    }
+  },
+  "comparison_runs": [
+    {
+      "name": "svm_10_states_il_20k",
+      "hierarchy": {
+        "stage1_model": "svm",
+        "stage2_model": "svm",
+        "fallback_model": "svm"
+      }
+    },
+    {
+      "name": "random_forest_10_states_il_20k",
+      "hierarchy": {
+        "stage1_model": "random_forest",
+        "stage2_model": "random_forest",
+        "fallback_model": "random_forest"
+      }
+    },
+    {
+      "name": "xgboost_10_states_il_20k",
+      "hierarchy": {
+        "stage1_model": "xgboost",
+        "stage2_model": "xgboost",
+        "fallback_model": "xgboost"
+      }
+    }
+  ]
+}

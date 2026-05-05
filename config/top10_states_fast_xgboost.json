@@ -1,0 +1,41 @@
+{
+  "output_dir": "results/top10_states_fast_xgboost",
+  "feature_cache_dir": "data/feature_cache",
+  "python_cmd": "/opt/anaconda3/bin/python",
+  "max_rows": 20000,
+  "top_n_states": 10,
+  "min_issuer_count": 1,
+  "embedding": {
+    "strategy": "tfidf",
+    "min_df": 3,
+    "use_bigrams": false,
+    "max_features": 2500,
+    "max_doc_tokens": 500
+  },
+  "models": {
+    "xgboost": {
+      "objective": "multi:softprob",
+      "eval_metric": "mlogloss",
+      "eta": 0.1,
+      "max_depth": 8,
+      "subsample": 0.8,
+      "colsample_bytree": 0.8,
+      "nrounds": 240,
+      "min_child_weight": 1,
+      "gamma": 0,
+      "lambda": 1,
+      "alpha": 0,
+      "tree_method": "hist"
+    }
+  },
+  "comparison_runs": [
+    {
+      "name": "xgboost_top10_fast",
+      "hierarchy": {
+        "stage1_model": "xgboost",
+        "stage2_model": "xgboost",
+        "fallback_model": "xgboost"
+      }
+    }
+  ]
+}

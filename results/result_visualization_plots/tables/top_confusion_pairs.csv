@@ -1,0 +1,21 @@
+truth,predicted,count,result_dir,algorithm,model,system,system_label,pair
+sa,ts,1465,r_run,xgboost_cascade,XGBoost,flat_state,Flat state,sa -> ts
+sa,f,1430,r_run,xgboost_cascade,XGBoost,flat_state,Flat state,sa -> f
+sa,ss,1370,r_run,xgboost_cascade,XGBoost,flat_state,Flat state,sa -> ss
+sa,fs,1356,r_run,xgboost_cascade,XGBoost,flat_state,Flat state,sa -> fs
+sa,fd,1340,r_run,xgboost_cascade,XGBoost,flat_state,Flat state,sa -> fd
+sa,st,1328,r_run,xgboost_cascade,XGBoost,flat_state,Flat state,sa -> st
+sa,i,1281,r_run,xgboost_cascade,XGBoost,flat_state,Flat state,sa -> i
+sa,sag,1251,r_run,xgboost_cascade,XGBoost,flat_state,Flat state,sa -> sag
+sa,s,1230,r_run,xgboost_cascade,XGBoost,flat_state,Flat state,sa -> s
+f,ts,849,r_run,xgboost_cascade,XGBoost,flat_state,Flat state,f -> ts
+s,f,835,r_run,xgboost_cascade,XGBoost,flat_state,Flat state,s -> f
+f,fd,821,r_run,xgboost_cascade,XGBoost,flat_state,Flat state,f -> fd
+f,fs,814,r_run,xgboost_cascade,XGBoost,flat_state,Flat state,f -> fs
+s,ts,806,r_run,xgboost_cascade,XGBoost,flat_state,Flat state,s -> ts
+f,sag,788,r_run,xgboost_cascade,XGBoost,flat_state,Flat state,f -> sag
+f,ss,769,r_run,xgboost_cascade,XGBoost,flat_state,Flat state,f -> ss
+f,st,768,r_run,xgboost_cascade,XGBoost,flat_state,Flat state,f -> st
+Supreme Court of the United States,Supreme Court of Puerto Rico,768,r_run,xgboost_cascade,XGBoost,plain_cascade,Plain cascade,Supreme Court of the United States -> Supreme Court of Puerto Rico
+s,fs,755,r_run,xgboost_cascade,XGBoost,flat_state,Flat state,s -> fs
+f,s,753,r_run,xgboost_cascade,XGBoost,flat_state,Flat state,f -> s

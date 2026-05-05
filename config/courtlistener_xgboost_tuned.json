@@ -1,0 +1,45 @@
+{
+  "dataset": {
+    "source": "courtlistener",
+    "courtlistener_dir": "data/courtlistener",
+    "courtlistener_aggregate_level": "cluster",
+    "courtlistener_require_state": true,
+    "prepared_path": "data/processed/courtlistener_training.csv.gz"
+  },
+  "max_rows": 50000,
+  "top_n_states": 15,
+  "seed": 42,
+  "min_issuer_count": 10,
+  "split": "train",
+  "cache_dir": "cache",
+  "processed_dir": "data/processed",
+  "results_dir": "results/r_run_xgboost_tuned",
+  "models_dir": "results/r_run_xgboost_tuned/models",
+  "embedding": {
+    "strategy": "tfidf"
+  },
+  "models": {
+    "xgboost": {
+      "eta": 0.01,
+      "max_depth": 10,
+      "nrounds": 500,
+      "subsample": 0.7,
+      "colsample_bytree": 0.7,
+      "min_child_weight": 5,
+      "gamma": 1.0,
+      "lambda": 50,
+      "alpha": 0.5,
+      "scale_pos_weight": 1
+    }
+  },
+  "comparison_runs": [
+    {
+      "name": "xgboost_cascade_tuned",
+      "hierarchy": {
+        "stage1_model": "xgboost",
+        "stage2_model": "xgboost",
+        "fallback_model": "xgboost"
+      }
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "xgboost_cascade_tuned": {
+    "confidence_threshold": 0.85,
+    "top_k_states": 2,
+    "global_weight": 0.25
+  }
+}
