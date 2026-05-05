@@ -981,6 +981,175 @@ def save_class_balance_plots(result_dirs: list[Path], output_dir: Path, top_n: i
         plt.close()
 
 
+def save_report_training_architecture(output_dir: Path) -> None:
+    fig, ax = plt.subplots(figsize=(12, 6.5))
+    ax.axis("off")
+
+    boxes = [
+        {
+            "xy": (0.07, 0.58),
+            "title": "Flat state",
+            "body": "Document features -> state\nBroad jurisdiction baseline",
+            "color": "#264653",
+        },
+        {
+            "xy": (0.56, 0.58),
+            "title": "Flat issuer",
+            "body": "Document features -> issuer\nDirect fine-grained baseline",
+            "color": "#2A9D8F",
+        },
+        {
+            "xy": (0.07, 0.20),
+            "title": "Plain cascade",
+            "body": "Stage 1: predict state\nStage 2: issuer model for predicted state",
+            "color": "#E9C46A",
+        },
+        {
+            "xy": (0.56, 0.20),
+            "title": "Cascade + fallback",
+            "body": "Use local issuer model when confident\nUse global issuer model when uncertain",
+            "color": "#E76F51",
+        },
+    ]
+
+    for item in boxes:
+        x, y = item["xy"]
+        ax.add_patch(
+            plt.Rectangle(
+                (x, y),
+                0.37,
+                0.24,
+                transform=ax.transAxes,
+                facecolor="#FBFCFF",
+                edgecolor=item["color"],
+                linewidth=2.2,
+                zorder=2,
+            )
+        )
+        ax.text(x + 0.025, y + 0.17, item["title"], transform=ax.transAxes, fontsize=16, fontweight="bold", color=item["color"])
+        ax.text(x + 0.025, y + 0.07, item["body"], transform=ax.transAxes, fontsize=11.5, color="#333333", va="center")
+
+    ax.text(0.5, 0.93, "Model training setups compared in the experiment", ha="center", transform=ax.transAxes, fontsize=20)
+    ax.text(
+        0.5,
+        0.89,
+        "All setups use the same processed legal text and metadata features; they differ in how labels are predicted.",
+        ha="center",
+        transform=ax.transAxes,
+        fontsize=11.5,
+        color="#555555",
+    )
+    ax.annotate("", xy=(0.56, 0.70), xytext=(0.44, 0.70), xycoords="axes fraction", arrowprops={"arrowstyle": "->", "lw": 1.8, "color": "#9AA4B2"})
+    ax.annotate("", xy=(0.56, 0.32), xytext=(0.44, 0.32), xycoords="axes fraction", arrowprops={"arrowstyle": "->", "lw": 1.8, "color": "#9AA4B2"})
+    ax.text(0.50, 0.51, "same features,\ndifferent prediction design", ha="center", transform=ax.transAxes, fontsize=10.5, color="#555555")
+
+    plt.savefig(figure_path(output_dir, "core_report_training_architecture.png", "core"), dpi=220, bbox_inches="tight")
+    plt.close()
+
+
+def save_report_model_selection(metrics: pd.DataFrame, output_dir: Path) -> None:
+    if metrics.empty or not {"algorithm", "system", "accuracy", "macro_f1"}.issubset(metrics.columns):
+        return
+
+    wanted = [
+        ("random_forest_cascade", "flat_state"),
+        ("svm_cascade", "flat_state"),
+        ("random_forest_cascade", "cascade_with_fallback"),
+        ("random_forest_cascade", "flat_issuer"),
+        ("xgboost_cascade", "flat_state"),
+    ]
+    rows = []
+    for algorithm, system in wanted:
+        match = metrics[(metrics["algorithm"] == algorithm) & (metrics["system"] == system)]
+        if not match.empty:
+            rows.append(match.iloc[0])
+    if not rows:
+        return
+
+    frame = pd.DataFrame(rows).copy()
+    frame["model"] = frame["algorithm"].map(model_label)
+    frame["approach"] = frame["system"].map(SYSTEM_LABELS).fillna(frame["system"])
+    frame["label"] = frame["model"] + " - " + frame["approach"]
+    frame = frame.sort_values("accuracy", ascending=True)
+    colors = frame["model"].map(MODEL_PALETTE).fillna("#666666")
+
+    fig, ax = plt.subplots(figsize=(11.5, 6.4))
+    bars = ax.barh(frame["label"], frame["accuracy"], color=colors)
+    ax.xaxis.set_major_formatter(PercentFormatter(1.0))
+    ax.set_xlim(0, 1.05)
+    ax.set_xlabel("Test accuracy")
+    ax.set_ylabel("")
+    ax.set_title("Model selection summary: Random Forest is the strongest practical choice")
+    ax.grid(axis="x", alpha=0.25)
+
+    for bar, (_, row) in zip(bars, frame.iterrows()):
+        text = f"{row['accuracy']:.1%} accuracy | macro F1 {row['macro_f1']:.3f}"
+        ax.text(min(row["accuracy"] + 0.015, 1.01), bar.get_y() + bar.get_height() / 2, text, va="center", fontsize=10)
+
+    plt.tight_layout()
+    plt.savefig(figure_path(output_dir, "core_report_model_selection.png", "core"), dpi=220, bbox_inches="tight")
+    plt.close()
+
+
+def save_report_validation_breakdown(metrics: pd.DataFrame, output_dir: Path) -> None:
+    required = {"algorithm", "system", "accuracy", "wrong_issuer_correct_state", "wrong_state_wrong_issuer"}
+    if metrics.empty or not required.issubset(metrics.columns):
+        return
+
+    wanted = [
+        ("random_forest_cascade", "flat_issuer"),
+        ("random_forest_cascade", "cascade_with_fallback"),
+        ("svm_cascade", "flat_issuer"),
+        ("svm_cascade", "cascade_with_fallback"),
+    ]
+    rows = []
+    for algorithm, system in wanted:
+        match = metrics[(metrics["algorithm"] == algorithm) & (metrics["system"] == system)]
+        if not match.empty:
+            row = match.iloc[0].copy()
+            wrong_total = row["wrong_issuer_correct_state"] + row["wrong_state_wrong_issuer"]
+            if pd.isna(wrong_total) or wrong_total <= 0 or row["accuracy"] >= 1:
+                continue
+            estimated_total = wrong_total / (1 - row["accuracy"])
+            row["correct_issuer_share"] = row["accuracy"]
+            row["correct_state_wrong_issuer_share"] = row["wrong_issuer_correct_state"] / estimated_total
+            row["wrong_state_and_issuer_share"] = row["wrong_state_wrong_issuer"] / estimated_total
+            rows.append(row)
+    if not rows:
+        return
+
+    frame = pd.DataFrame(rows)
+    frame["label"] = frame["algorithm"].map(model_label) + " - " + frame["system"].map(SYSTEM_LABELS).fillna(frame["system"])
+    frame = frame.iloc[::-1]
+
+    categories = [
+        ("correct_issuer_share", "Correct issuer", "#2A9D8F"),
+        ("correct_state_wrong_issuer_share", "Correct state, wrong issuer", "#E9C46A"),
+        ("wrong_state_and_issuer_share", "Wrong state and issuer", "#E76F51"),
+    ]
+
+    fig, ax = plt.subplots(figsize=(12, 5.7))
+    left = pd.Series(0, index=frame.index, dtype=float)
+    for column, label, color in categories:
+        ax.barh(frame["label"], frame[column], left=left, color=color, label=label)
+        left = left + frame[column]
+
+    ax.xaxis.set_major_formatter(PercentFormatter(1.0))
+    ax.set_xlim(0, 1)
+    ax.set_xlabel("Share of test cases")
+    ax.set_ylabel("")
+    ax.set_title("Validation view: where issuer predictions succeed or fail")
+    ax.legend(loc="lower center", bbox_to_anchor=(0.5, -0.28), ncols=3, frameon=True)
+    ax.grid(axis="x", alpha=0.25)
+
+    for idx, row in frame.iterrows():
+        ax.text(row["correct_issuer_share"] / 2, row["label"], f"{row['correct_issuer_share']:.1%}", ha="center", va="center", fontsize=10, color="white", fontweight="bold")
+
+    plt.tight_layout()
+    plt.savefig(figure_path(output_dir, "core_report_validation_breakdown.png", "core"), dpi=220, bbox_inches="tight")
+    plt.close()
+
+
 def main() -> None:
     args = parse_args()
     output_dir = ensure_dir(args.output_dir)
@@ -1022,6 +1191,9 @@ def main() -> None:
     save_top_confusion_pairs(args.result_dirs, output_dir, args.top_n)
     save_prediction_correctness(args.result_dirs, output_dir)
     save_class_balance_plots(args.result_dirs, output_dir, args.top_n)
+    save_report_training_architecture(output_dir)
+    save_report_model_selection(metrics, output_dir)
+    save_report_validation_breakdown(metrics, output_dir)
 
     print(f"Wrote visualizations to {output_dir}")
 
